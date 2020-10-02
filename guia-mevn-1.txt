@@ -1,0 +1,33 @@
+Guia para la instalacion de MEVN
+
+1) creamos la carpeta del proyecto
+2) Inicializamos el package.json con npm init --yes
+3) Agregamos express npm i  express --save
+4) Creamos el archivo app.js con el siguiente contenido:
+
+const express = require ('express');
+const app = express();
+
+//capturamos con get url 
+app.get('/', function (req, res) {
+    res.send('Hola mundo');
+})
+
+let puerto = 3000;
+
+app.listen(puerto, function () {
+    console.log('Escuchando peticiones en el puerto: ' + puerto + '...');
+})
+//-----------------------------------------
+5) ejecutamos con node app.js
+6) Para evitar reiniciar el servidor ante cada modificacion del codigo instalamos nodemon
+   npm i nodemon --save
+7) Agregamos el script dev a package.json
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+ ----------------------------------
+ guardamos 
+ 8) ejecutamos con npm run dev
+ 
