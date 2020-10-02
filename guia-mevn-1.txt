@@ -38,5 +38,15 @@ app.listen(puerto, function () {
      app.use(morgan('tiny'));
      ------------------------------
      Ahora comprobamos mejor las peticiones a traves del puerto 3000
-  
-
+  11) Para evitar bloqueos al hacer solicitudes de recursos a otros sitios web, usando CORS (cross-origin resource sharing)
+    instalamos la libreria correspondiente
+    npm i cors --save
+  12) Modificamos js.app
+        const cors = require('cors');
+        app.use(cors());
+  13) Agregamos la funcion middleware express.json para analizar las solicitudes entrantes con contenido json
+        app.use(express.json());
+  14) Agregamos la funcion express.urlenconder para el analisis de solicitudes entrantes con url codificadas, la opcion extendida
+        activada para anexar contenido enriquecido (arrays, etc)
+        app.use(express.urlencoded({ extended: true }))
+  15)
