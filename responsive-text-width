@@ -1,0 +1,5 @@
+.responsive-width {
+    font-size: 2vw;
+}
+
+añada esa clase a un elemento que contenga texto para que se adapte al viewport actual
