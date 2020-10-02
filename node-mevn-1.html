@@ -1,133 +1,0 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-	<TITLE></TITLE>
-	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.7  (Unix)">
-	<META NAME="CREATED" CONTENT="20201002;14145400">
-	<META NAME="CHANGED" CONTENT="0;0">
-	<STYLE TYPE="text/css">
-	<!--
-		@page { margin: 2cm }
-		P { margin-bottom: 0.21cm }
-	-->
-	</STYLE>
-</HEAD>
-<BODY LANG="es-MX" DIR="LTR">
-<P STYLE="margin-bottom: 0cm"><FONT SIZE=5><B>Guia para la
-instalacion de MEVN</B></FONT></P>
-<P STYLE="margin-bottom: 0cm"></P>
-<OL>
-	<LI><P STYLE="margin-bottom: 0cm">creamos la carpeta del proyecto</P>
-	<LI><P STYLE="margin-bottom: 0cm">Inicializamos el package.json con
-	npm init --yes</P>
-	<LI><P STYLE="margin-bottom: 0cm">Agregamos express npm i  express
-	--save</P>
-	<LI><P STYLE="margin-bottom: 0cm">Creamos el archivo app.js con el
-	siguiente contenido:</P>
-</OL>
-<P STYLE="margin-bottom: 0cm"></P>
-<P STYLE="margin-bottom: 0cm">	const express = require ('express');</P>
-<P STYLE="margin-bottom: 0cm">	const app = express();</P>
-<P STYLE="margin-bottom: 0cm"></P>
-<P STYLE="margin-bottom: 0cm">	//capturamos con get url </P>
-<P STYLE="margin-bottom: 0cm">	app.get('/', function (req, res) {</P>
-<P STYLE="margin-bottom: 0cm">	    res.send('Hola mundo');</P>
-<P STYLE="margin-bottom: 0cm">	})</P>
-<P STYLE="margin-bottom: 0cm"></P>
-<P STYLE="margin-bottom: 0cm">	let puerto = process.env.port || 3000;
-//el puerto se asigna automaticamente si el entorno lo define</P>
-<P STYLE="margin-bottom: 0cm"></P>
-<P STYLE="margin-bottom: 0cm">	app.listen(puerto, function () {</P>
-<P STYLE="margin-bottom: 0cm">	    console.log('Escuchando peticiones
-en el puerto: ' + puerto + '...');</P>
-<P STYLE="margin-bottom: 0cm">	})</P>
-<P STYLE="margin-bottom: 0cm">	//-----------------------------------------</P>
-<OL START=5>
-	<LI><P STYLE="margin-bottom: 0cm">ejecutamos con node app.js</P>
-	<LI><P STYLE="margin-bottom: 0cm">Para evitar reiniciar el servidor
-	ante cada modificacion del codigo instalamos nodemon</P>
-	<OL>
-		<P STYLE="margin-bottom: 0cm">npm i nodemon --save</P>
-	</OL>
-	<LI><P STYLE="margin-bottom: 0cm">Agregamos el script dev a
-	package.json</P>
-</OL>
-<P STYLE="margin-bottom: 0cm">		 &quot;scripts&quot;: {</P>
-<P STYLE="margin-bottom: 0cm">		    &quot;test&quot;: &quot;echo
-\&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</P>
-<P STYLE="margin-bottom: 0cm">		    &quot;dev&quot;: &quot;nodemon
-app.js&quot;</P>
-<P STYLE="margin-bottom: 0cm">		  },</P>
-<P STYLE="margin-bottom: 0cm">	----------------------------------</P>
-<P STYLE="margin-bottom: 0cm">	guardamos </P>
-<OL START=8>
-	<LI><P STYLE="margin-bottom: 0cm">ejecutamos con npm run dev</P>
-	<LI><P STYLE="margin-bottom: 0cm">instalamos morgan para registro
-	automatizado de peticion y respuestas que seran visualizadas en la
-	consola</P>
-</OL>
-<P STYLE="margin-bottom: 0cm">		npm i morgan --save</P>
-<OL START=10>
-	<LI><P STYLE="margin-bottom: 0cm">Modificamos app.js </P>
-	<OL>
-		<P STYLE="margin-bottom: 0cm">const morgan = require('morgan');	</P>
-		<P STYLE="margin-bottom: 0cm">app.use(morgan('tiny'));</P>
-	</OL>
-</OL>
-<P STYLE="margin-bottom: 0cm">	 ------------------------------</P>
-<P STYLE="margin-bottom: 0cm">	Ahora comprobamos mejor las peticiones
-a traves del puerto 3000</P>
-<OL START=11>
-	<LI><P STYLE="margin-bottom: 0cm">Para evitar bloqueos al hacer
-	solicitudes de recursos a otros sitios web, usando CORS
-	(cross-origin resource sharing) instalamos la libreria
-	correspondiente</P>
-</OL>
-<P STYLE="margin-bottom: 0cm">		npm i cors --save</P>
-<OL START=12>
-	<LI><P STYLE="margin-bottom: 0cm">Modificamos js.app</P>
-	<OL>
-		<P STYLE="margin-bottom: 0cm">const cors = require('cors');</P>
-		<P STYLE="margin-bottom: 0cm">app.use(cors());</P>
-	</OL>
-	<LI><P STYLE="margin-bottom: 0cm">Agregamos la funcion middleware
-	express.json para analizar las solicitudes entrantes con contenido
-	json</P>
-</OL>
-<P STYLE="margin-bottom: 0cm">  	app.use(express.json());</P>
-<OL START=14>
-	<LI><P STYLE="margin-bottom: 0cm">Agregamos la funcion
-	express.urlenconder para el analisis de solicitudes entrantes con
-	url codificadas, la opcion extendida activada para anexar contenido
-	enriquecido (arrays, etc)</P>
-	<P STYLE="margin-bottom: 0cm">app.use(express.urlencoded({ extended:
-	true }))</P>
-	<LI><P STYLE="margin-bottom: 0cm">Servimos una pagina estatica, para
-	ello creamos un directorio public con un archivo index.html que
-	contenga</P>
-</OL>
-<P STYLE="margin-bottom: 0cm">	  &lt;!doctype html&gt;</P>
-<P STYLE="margin-bottom: 0cm">	    &lt;html lang=&quot;es&quot;&gt;</P>
-<P STYLE="margin-bottom: 0cm">	        &lt;head&gt; </P>
-<P STYLE="margin-bottom: 0cm">	            &lt;meta charset=&quot;UTF-8&quot;&gt;</P>
-<P STYLE="margin-bottom: 0cm">	            &lt;title&gt;Bienvenido&lt;/title&gt;</P>
-<P STYLE="margin-bottom: 0cm">	        &lt;/head&gt;</P>
-<P STYLE="margin-bottom: 0cm">	        &lt;h1&gt;Hola
-&lt;small&gt;mundo&lt;/small&gt;&lt;/h1&gt;</P>
-<P STYLE="margin-bottom: 0cm">	        &lt;body&gt;</P>
-<P STYLE="margin-bottom: 0cm">	        &lt;/body&gt;</P>
-<P STYLE="margin-bottom: 0cm">	    &lt;/html&gt;</P>
-<P STYLE="margin-bottom: 0cm">	 ----------------------------</P>
-<P STYLE="margin-bottom: 0cm">        	Y agregamos a app.js </P>
-<P STYLE="margin-bottom: 0cm">		const path = require('path');</P>
-<P STYLE="margin-bottom: 0cm">		app.use(express.static(path.join(__dirname,
-'public')));</P>
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
-<P STYLE="margin-bottom: 0cm">	Por ahora podemos comentar el bloque
-de resolucion de peticiones get creado anteriormente</P>
-<P STYLE="margin-bottom: 0cm">   
-</P>
-</BODY>
-</HTML>
