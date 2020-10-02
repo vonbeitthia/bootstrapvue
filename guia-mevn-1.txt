@@ -49,4 +49,20 @@ app.listen(puerto, function () {
   14) Agregamos la funcion express.urlenconder para el analisis de solicitudes entrantes con url codificadas, la opcion extendida
         activada para anexar contenido enriquecido (arrays, etc)
         app.use(express.urlencoded({ extended: true }))
-  15)
+  15) Servimos una pagina estatica, para ello creamos un directorio public con un archivo index.html que contenga
+  <!doctype html>
+    <html lang="es">
+        <head> 
+            <meta charset="UTF-8">
+            <title>Bienvenido</title>
+        </head>
+        <h1>Hola <small>mundo</small></h1>
+        <body>
+        </body>
+    </html>
+    ----------------------------
+        Y agregamos a app.js 
+        const path = require('path');
+        app.use(express.static(path.join(__dirname, 'public')));
+        Por ahora podemos comentar el bloque de resolucion de peticiones get creado anteriormente
+   
