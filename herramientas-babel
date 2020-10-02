@@ -1,0 +1,38 @@
+¿Dónde está JavaScript hoy en día?
+
+Desde hace tiempo podemos ejecutar JavaScript en la parte cliente o navegador en desarrollo web y ahora también podemos ejecutar JavaScript en la parte del servidor gracias a Node.
+
+JavaScript ahora también se puede utilizar para generar una aplicación de escritorio mediante la biblioteca Electron y tenemos varios ejemplos de ello como Atom o Skype.
+
+Aunque la cosa no se queda ahí, podemos crear una aplicación móvil nativa gracias a React Native o NativeScript.
+
+Aunque JavaScript parece tan maravilloso ¡¡¡se le ve el plumero!!!. Uno de los problemas principales de JavaScript es su sintaxis. Para tratar de hacerla más amigable a los desarrolladores se van creando estándares como ECMAScript  6, que es un nuevo estándar.
+
+El problema que tenemos es que cuando se ejecuta de lado de cliente, cada navegador puede se compatible o no con el nuevo estándar.
+¿Qué es Babel y cómo lo podemos utilizar?
+
+Para solucionar la problemática de compatibilidad entre estándares y navegadores se utilizan compiladores que convierten el código JavaScript de un estándar a otro estándar más antiguo y, por lo tanto, más compatible. 
+
+Entonces, Babel es un compilador que convierte un estándar nuevo en una versión totalmente compatible de JavaScript. Así, tenemos la ventaja de poder programar en un estándar nuevo sin renunciar a la compatibilidad entre navegadores.
+
+La forma más básica de uso sería inicializar el package.json
+
+npm init -y
+
+Luego instalar los paquetes necesarios:
+
+npm install --save-dev babel-core babel-cli
+
+Ahora necesitamos configurar una transformación. Para ello, creamos el fichero .babelrc en el mismo directorio que el package.json y añadimos:
+
+{
+  "presets": ["es2015"]
+  }
+
+Ahora instalamos el preset:
+
+npm -install -D babel-preset-es2015
+
+Ya podríamos compilar ficheros JavaScript:
+
+babel es5-script.js --out-file script.js
